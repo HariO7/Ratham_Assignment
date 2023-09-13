@@ -1,24 +1,47 @@
 import React, { useState } from "react";
 import { createClientMessage } from "react-chatbot-kit";
 
-function ActionProvider({ createChatBotMessage, setState, children }: any) {
-  const [isClicked, setIsClicked] = useState(false);
-  const handleOk = () => {
-    console.log("heee");
+const stages = { OK: "OK", DATE: "DATE",NAME:"NAME", AGE: "AGE" };
 
+function ActionProvider({ createChatBotMessage, setState, children }: any) {
+  const [stage, setStage] = useState(stages.OK);
+
+  const handleOk = () => {
     const clientMessage = createClientMessage("Got it.", {});
     setState((prev: any) => ({
       ...prev,
       messages: [...prev.messages, clientMessage],
     }));
 
-    const promptMessage = createChatBotMessage("Pick a slot!");
+    setStage(stages.DATE);
+
+    window.document
+      .getElementsByClassName("react-chatbot-kit-chat-input")[0]
+      .setAttribute("disabled", "true");
+
+    const dateSelection = createChatBotMessage("Pick a slot!", {
+      widget: "selectDate",
+    });
     setState((prev: any) => ({
       ...prev,
-      messages: [...prev.messages, promptMessage],
+      messages: [...prev.messages, dateSelection],
+    }));
+  };
+
+  const handleDateSelection = (date: string) => {
+    const clientMessage = createClientMessage(date, {});
+    setState((prev: any) => ({
+      ...prev,
+      messages: [...prev.messages, clientMessage],
     }));
 
-    setIsClicked(true);
+    window.document
+      .getElementsByClassName("react-chatbot-kit-chat-input")[0]
+      .setAttribute("disabled", "false");
+
+    setStage(stages.AGE);
+
+
   };
   return (
     <div>
@@ -26,7 +49,8 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
         return React.cloneElement(child, {
           actions: {
             handleOk,
-            isClicked,
+            handleDateSelection,
+            stage
           },
         });
       })}
