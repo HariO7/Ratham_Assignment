@@ -11,7 +11,7 @@ const dates = [
 const options = Array.from({ length: 16 }, (_, index) => 5 + index);
 
 export const config = {
-  botName: "Hive",
+  botName: "Study",
   initialMessages: [
     createChatBotMessage(`Hello, Welcome to student info system!`, {
       widget: "okButton",

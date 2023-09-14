@@ -20,8 +20,7 @@ function LandingPage() {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">
             {name && age
-              ? `Your name ${name} aged ${age} has been added to student system. You may now exit.
-`
+              ? `Your name ${name} aged ${age} has been added to student system. You may now exit.`
               : `Welcome to the Student Info System`}
           </h1>
           {name === "" && age === 0 && (
@@ -31,7 +30,7 @@ function LandingPage() {
                 onClick={() => dispatch(toggleChatBot(true))}
                 className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
               >
-                Enter
+                Enroll Now
               </button>
             </>
           )}

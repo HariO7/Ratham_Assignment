@@ -1,0 +1,21 @@
+/* ChatbotContainer is a class that wraps the entire Chatbot component */
+.ChatbotContainer {
+    width: 230px;
+    height: 340px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+.react-chatbot-kit-user-avatar{
+    display: inline;
+}
+
+.ChatbotContainer .react-chatbot-kit-user-avatar-container{
+    width: 16px;
+    height: 16px;
+    background-color: rgb(20, 173, 160);
+    border-radius: 5px;
+  }
+  
