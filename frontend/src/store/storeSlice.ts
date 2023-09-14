@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const chatSlice = createSlice({
-  name: "chat",
+const storeSlice = createSlice({
+  name: "store",
   initialState: {
     name: "",
     age: 0,
@@ -10,11 +10,9 @@ const chatSlice = createSlice({
   reducers: {
     addName(state, action) {
       state.name = action.payload;
-      console.log("inserted name", state.name);
     },
     addAge(state, action) {
       state.age = action.payload;
-      console.log("inserted age", state.age);
     },
     toggleChatBot(state, action) {
       state.showChatBot = action.payload;
@@ -22,6 +20,6 @@ const chatSlice = createSlice({
   },
 });
 
-export const { addName, addAge, toggleChatBot } = chatSlice.actions;
+export const { addName, addAge, toggleChatBot } = storeSlice.actions;
 
-export default chatSlice.reducer;
+export default storeSlice.reducer;

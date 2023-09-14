@@ -1,15 +1,15 @@
 import React from "react";
 import ChatbotComponent from "../components/ChatBot/ChatbotComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleChatBot } from "../store/chatSlice";
+import { toggleChatBot } from "../store/storeSlice";
 
 function LandingPage() {
   // const [showChatBot, setSetshowChatBot] = useState(false);
   const showChatBot = useSelector(
-    (state: any) => state.chatHandler.showChatBot
+    (state: any) => state.storeHandler.showChatBot
   );
-  const name = useSelector((state: any) => state.chatHandler.name);
-  const age = useSelector((state: any) => state.chatHandler.age);
+  const name = useSelector((state: any) => state.storeHandler.name);
+  const age = useSelector((state: any) => state.storeHandler.age);
   const dispatch = useDispatch();
 
   return (

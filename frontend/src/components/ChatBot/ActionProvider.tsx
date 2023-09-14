@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createClientMessage } from "react-chatbot-kit";
 import { useDispatch } from "react-redux";
-import { addAge, addName, toggleChatBot } from "../../store/chatSlice";
+import { addAge, addName, toggleChatBot } from "../../store/storeSlice";
 
 const stages = {
   OK: "OK",
@@ -83,9 +83,21 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
       messages: [...prev.messages, exitMessage],
     }));
 
-    setTimeout(() => {
-      dispatch(toggleChatBot(false));
-    }, 5000);
+    let countdown = 5;
+    const countDownFunction = () => {
+      const timeMessage = createChatBotMessage(`...${countdown}`, {});
+      setState((prev: any) => ({
+        ...prev,
+        messages: [...prev.messages, timeMessage],
+      }));
+      countdown--;
+      if (countdown < 0) {
+        clearInterval(interval);
+        dispatch(toggleChatBot(false));
+      }
+    };
+
+    const interval = setInterval(countDownFunction, 1000);
   };
 
   return (

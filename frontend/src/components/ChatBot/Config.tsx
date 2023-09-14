@@ -1,7 +1,6 @@
 import moment from "moment";
 import { ReactElement } from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
-import IConfig from "react-chatbot-kit/build/src/interfaces/IConfig";
 
 const dates = [
   moment().format("ddd MMM do"),
@@ -9,9 +8,9 @@ const dates = [
   moment().add("2", "days").format("ddd MMM do"),
 ];
 
-const options = Array.from({ length: 23 }, (_, index) => 18 + index);
+const options = Array.from({ length: 16 }, (_, index) => 5 + index);
 
-export const config: IConfig = {
+export const config = {
   botName: "Hive",
   initialMessages: [
     createChatBotMessage(`Hello, Welcome to student info system!`, {
@@ -21,7 +20,7 @@ export const config: IConfig = {
   widgets: [
     {
       widgetName: "okButton",
-      widgetFunc: (props) => {
+      widgetFunc: (props: any) => {
         return (props.actionProvider.stage === "OK" && (
           <button
             className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
@@ -36,7 +35,7 @@ export const config: IConfig = {
     },
     {
       widgetName: "selectDate",
-      widgetFunc: (props) => {
+      widgetFunc: (props: any) => {
         return (props.actionProvider.stage === "DATE" && (
           <div className="flex flex-wrap scroll-my-2 cursor-pointer">
             {dates.map((date, index) => {
@@ -60,7 +59,7 @@ export const config: IConfig = {
     },
     {
       widgetName: "dropdownAge",
-      widgetFunc: (props) => {
+      widgetFunc: (props: any) => {
         return (props.actionProvider.stage === "AGE" && (
           <select
             onChange={(e) =>
