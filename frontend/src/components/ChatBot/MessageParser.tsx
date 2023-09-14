@@ -2,7 +2,9 @@ import React from "react";
 
 function MessageParser({ children, actions }: any) {
   const parse = (message: string) => {
-    console.log(message);
+    if (actions.stage === "NAME") {
+      actions.handleNameEntry(message);
+    }
   };
   return (
     <div>

@@ -9,6 +9,8 @@ const dates = [
   moment().add("2", "days").format("ddd MMM do"),
 ];
 
+const options = Array.from({ length: 23 }, (_, index) => 18 + index);
+
 export const config: IConfig = {
   botName: "Hive",
   initialMessages: [
@@ -51,6 +53,27 @@ export const config: IConfig = {
               );
             })}
           </div>
+        )) as ReactElement;
+      },
+      mapStateToProps: [""],
+      props: {},
+    },
+    {
+      widgetName: "dropdownAge",
+      widgetFunc: (props) => {
+        return (props.actionProvider.stage === "AGE" && (
+          <select
+            onChange={(e) =>
+              props.actionProvider.handleAgeSelection(e.target.value)
+            }
+          >
+            <option value="">Select Age</option>
+            {options.map((age, index) => (
+              <option key={index} value={age}>
+                {age}
+              </option>
+            ))}
+          </select>
         )) as ReactElement;
       },
       mapStateToProps: [""],
