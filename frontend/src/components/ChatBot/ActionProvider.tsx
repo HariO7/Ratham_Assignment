@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { createClientMessage } from "react-chatbot-kit";
 import { useDispatch } from "react-redux";
 import { addAge, addName, toggleChatBot } from "../../store/storeSlice";
@@ -42,7 +42,9 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
 
     setStage(stages.NAME);
 
-    const nameMessage = createChatBotMessage("Enter your Name");
+    const nameMessage = createChatBotMessage("Enter your Name", {
+      delay: 1000,
+    });
 
     setState((prev: any) => ({
       ...prev,
@@ -57,6 +59,7 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
 
     const clientMessage = createClientMessage("Select your Age", {
       widget: "dropdownAge",
+      delay:1000
     });
     setState((prev: any) => ({
       ...prev,
@@ -67,7 +70,7 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
   const handleAgeSelection = (age: number) => {
     dispatch(addAge(age));
 
-    const clientMessage = createClientMessage(`${age}`, {});
+    const clientMessage = createClientMessage(`${age}`, {delay:1000});
     setState((prev: any) => ({
       ...prev,
       messages: [...prev.messages, clientMessage],
@@ -102,7 +105,7 @@ function ActionProvider({ createChatBotMessage, setState, children }: any) {
 
   return (
     <div>
-      {React.Children.map(children, (child) => {
+      {Children.map(children, (child) => {
         return React.cloneElement(child, {
           actions: {
             handleOk,

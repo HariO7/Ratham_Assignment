@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 
 function MessageParser({ children, actions }: any) {
   const parse = (message: string) => {
@@ -8,7 +8,7 @@ function MessageParser({ children, actions }: any) {
   };
   return (
     <div>
-      {React.Children.map(children, (child) => {
+      {Children.map(children, (child) => {
         return React.cloneElement(child, {
           parse,
           actions,
