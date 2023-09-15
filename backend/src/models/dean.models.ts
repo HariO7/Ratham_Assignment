@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export interface DeanType {
   _id: mongoose.Types.ObjectId;
   password: string;
-  bookedSlots: Date[];
+  availableSlots: Date[];
 }
 
 const deanSchema = new mongoose.Schema({
@@ -12,7 +12,7 @@ const deanSchema = new mongoose.Schema({
     default: new mongoose.Types.ObjectId(),
   },
   password: { type: String, required: false },
-  bookedSlots: [{ type: Date, required: false }],
+  availableSlots: [{ type: Date, required: false }],
 });
 
 const DeanModel = mongoose.model("Dean", deanSchema);

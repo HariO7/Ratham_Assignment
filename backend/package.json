@@ -23,5 +23,9 @@
     "mongoose": "^7.4.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "moment": "^2.29.4"
   }
 }
